@@ -34,6 +34,10 @@
     <PackageReference Include="LavaGang.MelonLoader" Version="0.7.1" PrivateAssets="all" NoWarn="NU1701" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\TravelWireIcon.png" LogicalName="RovingSpecialCustomers.Assets.TravelWireIcon.png" />
+  </ItemGroup>
+
   <ItemGroup Condition="'$(Configuration)' == 'Mono' and '$(S1ApiMonoPath)' != ''">
     <Reference Include="S1API">
       <HintPath>$(S1ApiMonoPath)</HintPath>

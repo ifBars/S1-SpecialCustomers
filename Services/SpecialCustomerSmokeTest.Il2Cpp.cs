@@ -89,13 +89,14 @@ internal sealed class SpecialCustomerSmokeTest
 
         var missingNpcs = ExpectedNpcIds.Where(id => NPC.Get(id) is null).ToArray();
         var missingItems = ExpectedItemIds.Where(id => ItemManager.GetDefinition(id) is null).ToArray();
-        if (missingNpcs.Length == 0 && missingItems.Length == 0)
+        var missingTravelWireIcon = NPC.Get("rsc_dispatcher")?.Icon is null;
+        if (missingNpcs.Length == 0 && missingItems.Length == 0 && !missingTravelWireIcon)
         {
-            Finish(true, $"Registered {ExpectedNpcIds.Length} NPCs and {ExpectedItemIds.Length} exclusive items in scene Main.");
+            Finish(true, $"Registered {ExpectedNpcIds.Length} NPCs, {ExpectedItemIds.Length} exclusive items, and the Travel Wire icon in scene Main.");
         }
         else
         {
-            Finish(false, $"Missing NPCs=[{string.Join(",", missingNpcs)}] Items=[{string.Join(",", missingItems)}].");
+            Finish(false, $"Missing NPCs=[{string.Join(",", missingNpcs)}] Items=[{string.Join(",", missingItems)}] TravelWireIcon={missingTravelWireIcon}.");
         }
     }
 

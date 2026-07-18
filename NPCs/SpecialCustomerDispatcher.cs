@@ -1,7 +1,9 @@
+using MelonLoader;
 using RovingSpecialCustomers.Models;
 using RovingSpecialCustomers.Services;
 using S1API.Entities;
 using S1API.Saveables;
+using S1API.Utils;
 
 namespace RovingSpecialCustomers.NPCs;
 
@@ -18,6 +20,18 @@ public sealed class SpecialCustomerDispatcher : NPC
     protected override void ConfigurePrefab(NPCPrefabBuilder builder)
     {
         builder.WithIdentity("rsc_dispatcher", "Travel", "Wire");
+
+        var icon = ImageUtils.LoadImageFromResource(
+            typeof(Core).Assembly,
+            "RovingSpecialCustomers.Assets.TravelWireIcon.png");
+        if (icon is not null)
+        {
+            builder.WithIcon(icon);
+        }
+        else
+        {
+            MelonLogger.Warning("[RSC] Travel Wire icon resource could not be loaded.");
+        }
     }
 
     protected override void OnCreated()
