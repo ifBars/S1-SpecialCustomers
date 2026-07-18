@@ -25,7 +25,7 @@ Native customer contracts handle acceptance, delivery, payment, receipts, saving
 
 ## Requirements
 
-- Schedule I 0.4.6 beta or alternate-beta
+- Schedule I 0.4.6 (currently beta or alternate-beta)
 - MelonLoader 0.7.x
 - S1API 3.1.0 beta or newer
 
@@ -45,25 +45,8 @@ Outputs:
 - `bin/Mono/netstandard2.1/S1SpecialCustomers_Mono.dll`
 - `bin/Il2cpp/net6.0/S1SpecialCustomers_Il2Cpp.dll`
 
-## Smoke test
-
-A gated runtime probe loads a save, waits for S1API custom NPC initialization, verifies six NPCs and four exclusive items, writes a result file, and exits.
-
-```text
---s1-special-customers-smoke --s1-special-customers-smoke-save-slot 3
-```
-
-Verified against the 0.4.6 beta installs:
-
-- Mono: build passed; loaded-save smoke passed.
-- IL2CPP: build passed; loaded-save smoke passed.
-
 ## Preview differences
 
 The preview showed cosmetics that are not present in the tested beta resources. The mod uses game-owned stand-ins: a skirt, executive hat, collar jacket, and mushroom hat. They can be replaced with the final public assets without changing saved visit state or contract behavior.
 
 The preview also leaves group-vs-individual spending and arrival presentation undecided. This implementation uses one lead buyer with a shared budget and a Wire notice rather than a cutscene.
-
-## Repository boundary
-
-This repository contains no Schedule I assemblies, generated IL2CPP wrappers, decompiled dumps, prefabs, textures, downloaded videos, API keys, or local machine paths. Game files and private assembly repositories are local build inputs only.
