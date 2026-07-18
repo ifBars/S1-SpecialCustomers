@@ -5,6 +5,7 @@ using S1API.Properties;
 using S1API.Entities.Appearances.AccessoryFields;
 using S1API.Entities.Appearances.BodyLayerFields;
 using S1API.Entities.Appearances.CustomizationFields;
+using S1API.Entities.Appearances.FaceLayerFields;
 using UnityEngine;
 
 namespace RovingSpecialCustomers.NPCs;
@@ -28,6 +29,7 @@ public sealed class BusinessLeader : RovingCrewLeader
                 appearance.RightEyeLidColor = appearance.SkinColor;
                 appearance.HairColor = new Color(0.08f, 0.05f, 0.03f);
                 appearance.HairPath = HairStyle.Spiky;
+                appearance.WithFaceLayer<Face>(Face.Neutral, Color.black);
                 appearance.WithBodyLayer<Shirts>(Shirts.RolledButtonUp, new Color(0.80f, 0.84f, 0.90f));
                 appearance.WithBodyLayer<Pants>(Pants.CargoPants, new Color(0.12f, 0.13f, 0.16f));
                 appearance.WithAccessoryLayer<Head>(Head.SmallRoundGlasses, Color.black);

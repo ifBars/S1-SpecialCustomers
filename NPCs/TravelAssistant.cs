@@ -2,6 +2,7 @@ using S1API.Entities;
 using S1API.Entities.Appearances.AccessoryFields;
 using S1API.Entities.Appearances.BodyLayerFields;
 using S1API.Entities.Appearances.CustomizationFields;
+using S1API.Entities.Appearances.FaceLayerFields;
 using UnityEngine;
 
 namespace RovingSpecialCustomers.NPCs;
@@ -25,6 +26,7 @@ public sealed class TravelAssistant : RovingCrewMember
                 appearance.RightEyeLidColor = appearance.SkinColor;
                 appearance.HairColor = new Color(0.12f, 0.07f, 0.04f);
                 appearance.HairPath = HairStyle.BuzzCut;
+                appearance.WithFaceLayer<Face>(Face.Neutral, Color.black);
                 appearance.WithBodyLayer<Shirts>(Shirts.TShirt, new Color(0.20f, 0.20f, 0.22f));
                 appearance.WithBodyLayer<Pants>(Pants.Jeans, new Color(0.12f, 0.17f, 0.24f));
                 appearance.WithAccessoryLayer<Feet>(Feet.Sneakers, Color.white);

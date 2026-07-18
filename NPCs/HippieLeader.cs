@@ -29,6 +29,7 @@ public sealed class HippieLeader : RovingCrewLeader
                 appearance.RightEyeLidColor = appearance.SkinColor;
                 appearance.HairColor = new Color(0.40f, 0.20f, 0.07f);
                 appearance.HairPath = HairStyle.BowlCut;
+                appearance.WithFaceLayer<Face>(Face.Neutral, Color.black);
                 appearance.WithFaceLayer<Eyes>(Eyes.Freckles, new Color(0.28f, 0.15f, 0.08f));
                 appearance.WithBodyLayer<Shirts>(Shirts.TShirt, new Color(0.30f, 0.62f, 0.28f));
                 appearance.WithBodyLayer<Pants>(Pants.Jeans, new Color(0.26f, 0.20f, 0.45f));
