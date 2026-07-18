@@ -4,11 +4,16 @@ using RovingSpecialCustomers.Services;
 using S1API.Entities;
 using S1API.Saveables;
 using S1API.Utils;
+using UnityEngine;
 
 namespace RovingSpecialCustomers.NPCs;
 
 public sealed class SpecialCustomerDispatcher : NPC
 {
+    private const string IconResourceName = "RovingSpecialCustomers.Assets.TravelWireIcon.png";
+
+    private static Sprite? _travelWireIcon;
+
     public static SpecialCustomerDispatcher? Instance { get; private set; }
 
     [SaveableField("RovingSpecialCustomerVisits")]
@@ -21,9 +26,7 @@ public sealed class SpecialCustomerDispatcher : NPC
     {
         builder.WithIdentity("rsc_dispatcher", "Travel", "Wire");
 
-        var icon = ImageUtils.LoadImageFromResource(
-            typeof(Core).Assembly,
-            "RovingSpecialCustomers.Assets.TravelWireIcon.png");
+        var icon = GetTravelWireIcon();
         if (icon is not null)
         {
             builder.WithIcon(icon);
@@ -38,6 +41,7 @@ public sealed class SpecialCustomerDispatcher : NPC
     {
         base.OnCreated();
         Instance = this;
+        ApplyTravelWireIcon();
         ClearConversationCategories();
         RovingVisitCoordinator.Bind(this);
     }
@@ -47,6 +51,7 @@ public sealed class SpecialCustomerDispatcher : NPC
         base.OnLoaded();
         _state ??= new RovingVisitState();
         Instance = this;
+        ApplyTravelWireIcon();
         RovingVisitCoordinator.Bind(this);
     }
 
@@ -63,4 +68,23 @@ public sealed class SpecialCustomerDispatcher : NPC
     internal void Tick(float deltaTime) => RovingVisitCoordinator.Tick(deltaTime);
     internal void SendSystemMessage(string message) => SendTextMessage(message);
     internal void SaveState() => RequestGameSave();
+
+    private static Sprite? GetTravelWireIcon()
+    {
+        _travelWireIcon ??= ImageUtils.LoadImageFromResource(
+            typeof(Core).Assembly,
+            IconResourceName);
+
+        return _travelWireIcon;
+    }
+
+    private void ApplyTravelWireIcon()
+    {
+        var icon = GetTravelWireIcon();
+        if (icon is null)
+            return;
+
+        Icon = icon;
+        RefreshMessagingIcons();
+    }
 }
