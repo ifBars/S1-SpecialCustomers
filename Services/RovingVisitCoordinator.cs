@@ -283,8 +283,9 @@ public static class RovingVisitCoordinator
         state.NoticeSent = true;
         var effects = string.Join(", ", state.PreferredEffectIds.Select(CrewDefinitions.GetEffectName));
         var days = Math.Max(0, state.ArrivalDay - SpecialCustomerRuntime.ElapsedDays);
+        var dayLabel = days == 1 ? "day" : "days";
         _dispatcher.SendSystemMessage(
-            $"Travel notice: {definition.DisplayName} arrives in about {days} day(s). " +
+            $"Travel notice: {definition.DisplayName} arrives in about {days} {dayLabel}, around 9 AM near the Northtown motel area. " +
             $"They only buy {definition.AcceptedDrugLabel}. Requested bonus effects: {effects}.");
         _dispatcher.SaveState();
     }
